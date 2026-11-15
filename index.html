@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>The Terrifying challenge</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=0.5">
+		<meta name="description" content="A list challenge of terrifying movies, hand selected by Jim Crowly">
+
+		<link rel="preload" href="./css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet';this.media='screen';">
+		<link rel="preload" href="./css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet';this.media='screen';">
+
+		<script type="module" src="./js/bootstrap.min.js" defer></script>
+		<script type="text/javascript" src="./js/lozad.min.js" defer></script>
+		<script type="module" src="./js/main.js" defer></script>
+
+		<style>
+			:root { --main-color: #C61400; --main-border-color:#FF0000; }
+			* {color: #FF0000;}
+			body {padding:0; background:black; -webkit-animation-duration: 5s; animation-duration: 5s; -webkit-animation-fill-mode: both; animation-fill-mode: both; -webkit-animation-name: fadeIn; animation-name: fadeIn;font-size:18px; font-family:sans-serif;}
+			div.loader {display:flex; flex-direction:column; position:fixed; height:100vh; width:100%; align-items:center; justify-content:center; background:#000000; transition:all 0.3s; z-index:1100;}
+			div.logo {width: 80%; height: auto; padding-top: 39.94%; background: black no-repeat center center; background-size:80vmin auto;}
+			div.ring {align-items: center; position: relative; width: 100px; height: 100px; background: url('./imgs/assets/skull256.webp') no-repeat fixed center/cover; -webkit-animation: single4 .25s ease infinite alternate; animation: single4 .25s ease infinite alternate;}
+			nav {pointer-events:none;}
+			@keyframes single4 {100% {transform:translateY(-20px);}}
+			@-webkit-keyframes single4 {100% {transform:translateY(-20px);}}
+			#carouselAdvancedRulesets>.carousel-inner {min-height:200px;}
+			#carouselAdvancedRulesets>.carousel-indicators {position:static;margin:0;}
+			#carouselAdvancedRulesets>.carousel-indicators [data-bs-target] {height:100%;flex:1;margin:0;text-indent:0;opacity:1;border:1px solid var(--main-color);background-color:inherit;color:#fff;font-size:2rem;}
+			#carouselAdvancedRulesets>.carousel-indicators [data-bs-target].active {background-color:var(--main-color);}
+			#Top>* {margin-bottom:2rem;}
+			#Top>p {text-align:justify;}
+			#background {position:fixed;transform:translate(-50%,-50%);left:50%;top:50%;width:100%;height:auto;overflow:hidden;z-index:-2;}
+			#background>video, #background>img {object-fit:cover;width:100%;height:auto;}
+			.bg-nav0 {background-color:black; pointer-events:auto;}
+			.bg-nav1 {background-image:linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0)); height:100px; pointer-events:none;}
+			.btn-sticky {float:right; top:2vh; right:1.6vh; border-color: red;}
+			.btn-outline-secondary {color:#fff;}
+			.fadeIn {-webkit-animation-name:fadeIn; animation-name:fadeIn;}
+			.modal-backdrop.show {opacity:0.8;}
+			.modal-content {background-color: #1b1f22;}
+			.modal-header {border-bottom:1px solid red;}
+			.offcanvas {top:0; right:0; width:16.5vmin; background-color:rgba(14, 3, 3, .9); transition:transform .1s ease-in-out; visibility:hidden;}
+			.offcanvas-body {padding:0; pointer-events:auto;}
+			.transition-fade {opacity:1; transition:300ms;}
+			html.is-animating .transition-fade {opacity:0;}
+		</style>
+	</head>
+
+	<body>
+		<header>
+			<!-- Loading Screen -->
+			<div class="loader">
+				<div class="logo lozad" data-background-image="./imgs/logo_s.webp"></div>
+				<div class="ring"></div>
+				<noscript>
+					Javascript is required for this site. Please enable Javascript in your web browser.
+					<style> div.ring { display:none; } noscript { color: white; padding-top: 20px; }</style>
+				</noscript>
+			</div>
+
+			<!-- Advanced Rulesets Modal -->
+			<div class="modal fade" id="advancedRules" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><div class="modal-content dark">
+				<div class="modal-header">
+					<h5>Advanced Rulesets</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div id="carouselAdvancedRulesets" class="carousel modal-body slide" data-bs-ride="carousel" data-bs-interval="false">
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<h2 class="card-title">Lax</h2>
+							If you've seen any list movie(s) within the last calendar year, you may count them as watched. Additionally with this ruleset,
+							you may perform the <b class="chiller">Terrifying Challenge</b> during any 30-day period (except the month of May).
+						</div>
+						<div class="carousel-item">
+							<h1 class="card-title">Retro</h1>
+							Any of the past years' lists may be played as normal--but any Secret Film revealed before Oct. 28th does not count.
+						</div>
+						<div class="carousel-item">
+							<h2 class="card-title">Curator</h2>
+							All movies from all years count as current list movies: assemble your own <b class="chiller">Terrifying Challenge</b> this year, or use for simple substitution. Previous years'
+							Secret Films count as standard list items for the purposes of this ruleset.
+						</div>
+						<div class="carousel-item">
+							<h2 class="card-title">Intel</h2>
+							If you can guess any of the Secret Films before their revelation date, you may watch and count them ahead of time. Revealing the titles to anyone else voids this ruleset.
+						</div>
+					</div>
+					<div class="carousel-indicators">
+						<button type="button" data-bs-target="#carouselAdvancedRulesets" data-bs-slide-to="0" class="nav-item active" aria-current="true" aria-label="Slide 1">Lax</button>
+						<button type="button" data-bs-target="#carouselAdvancedRulesets" data-bs-slide-to="1" class="nav-item" aria-label="Slide 2">Retro</button>
+						<button type="button" data-bs-target="#carouselAdvancedRulesets" data-bs-slide-to="2" class="nav-item" aria-label="Slide 3">Curator</button>
+						<button type="button" data-bs-target="#carouselAdvancedRulesets" data-bs-slide-to="3" class="nav-item" aria-label="Slide 4">Intel</button>
+					</div>
+				</div>
+			</div></div></div>
+
+			<!-- Background Animation -->
+			<div id="background">
+				<video type="video/mp4" loop autoplay muted playsinline></video>
+			</div>
+		</header>
+
+		<!-- Navigation -->
+		<nav class="container-fluid row mx-0 my-0 justify-content-center sticky-top">
+			<!-- Navigation Header -->
+			<div class="row flex-xl-row col-8 col-lg-7 justify-content-center bg-nav0">
+				<img class="col flex-grow-0" width="213" height="120" src="./imgs/logo_b.webp" alt="Terrifying Challenge Logo">
+				<div class="col flex-grow-1 carousel carousel-fade d-flex" id="historyCarouselControls" data-bs-interval="false">
+					<button class="carousel-control-prev position-static" type="button" data-bs-target="#historyCarouselControls" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<div class="carousel-inner my-auto" role="group">
+						<div class="carousel-item btn-group btn-group-lg d-flex flex-nowrap">
+							<a id="2017" class="btn btn-outline-secondary nav-year">2017</a>
+							<a id="2018" class="btn btn-outline-secondary nav-year">2018</a>
+							<a id="2019" class="btn btn-outline-secondary nav-year">2019</a>
+						</div>
+						<div class="carousel-item btn-group btn-group-lg d-flex flex-nowrap active">
+							<a id="2020" class="btn btn-outline-secondary nav-year">2020</a>
+							<a id="2021" class="btn btn-outline-secondary nav-year">2021</a>
+							<a id="2022" class="btn btn-outline-secondary nav-year">2022</a>
+						</div>
+						<div class="carousel-item btn-group btn-group-lg d-flex flex-nowrap">
+							<a id="2023" class="btn btn-outline-secondary nav-year">2023</a>
+						</div>
+					</div>
+					<button class="carousel-control-next position-static" type="button" data-bs-target="#historyCarouselControls" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
+				<div class="col flex-grow-0 my-auto">
+					<button class="burger burger--slider" type="button" id="OpenMenu" data-bs-target="#offcanvasNavigator" aria-controls="offcanvasNavigator" aria-label="Open Menu">
+						<span class="burger-box"><span class="burger-inner"></span></span>
+					</button>
+				</div>
+			</div>
+			<div class="col-8 col-lg-7 bg-nav1"></div>
+
+			<!-- Navigation Offcanvas -->
+			<div class="offcanvas offcanvas-collapse p-0" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasNavigator" aria-labelledby="navigation">
+				<nav class="offcanvas-body">
+					<!-- Template for Nav Button Generation -->
+					<ul id="navBar"></ul>
+				</nav>
+			</div>
+		</nav>
+
+		<main class="transition-fade row justify-content-center mx-0 w-100">
+			<section class="scroll-sect col-8 col-lg-6 text-center" id="Top">
+
+				<!-- Animated banner -->
+				<video id="banner" class="portrait" playsinline autoplay muted loop>Your browser does not support the video tag.</video>
+
+				<h1>Welcome.</h1>
+				<p>
+					Are you ready to binge watch an unhealthy amount of horror this Halloween season? If so, then I propose a game.
+					It's called the <b class="chiller">Terrifying Challenge</b>.
+					The rules are simple: pick a few movies off the <a href="#title">list</a> below and watch them during month of October.
+					The game ends on the conclusion of Halloween night, at which point you claim your score as follows:
+				</p>
+
+				<div class="row">
+					<div class='col-6 border border-4 border-dark rounded py-5'>
+						<h2>Zombie</h2>
+						Watch three movies
+					</div>
+					<div class='col-6 border border-4 border-dark rounded py-5'>
+						<h2>Ghoul</h2>
+						Watch seven movies
+					</div>
+					<div class='col-6 border border-4 border-dark rounded py-5'>
+						<h2>Vampire</h2>
+						Watch nine movies, then two "<a href="#secret">Secret Films</a>"
+					</div>
+					<div class='col-6 border border-4 border-dark rounded py-5'>
+						<h2>Fiend</h2>
+						Watch EVERY SINGLE movie on the list
+					</div>
+				</div>
+
+				<!-- Advanced Rulesets section -->
+				<button type='button' class='btn btn-dark chiller-button py-0' data-bs-toggle='modal' data-bs-target='#advancedRules'>Advanced Rulesets</button>
+
+				<h1>But Beware...</h1>
+				<p>
+					The <b class="chiller">Terrifying Challenge</b> is a test of sanity and endurance.
+					It is not suitable for children, your mother-in-law, or any other frail and distractible individual.
+					Only the strongest will survive...
+				</p>
+
+			</section>
+			<section class='col-8 col-lg-6' id='articles'></section>
+			<section class='col-8 col-lg-6' id='articles-secrets'>
+				<!-- Secret Film Section -->
+				<header class='col-md-12 pb-5' id='Secret'><h1>Secret Films</h1></header>
+				<p class='text-center'>
+					The Secret Films are <b>extra</b> special movies, not suitable for just any day of the month.
+					They will be revealed on October 28th... just in time for the big night.
+					<br><br><!-- These buttons toggle which carousel is displayed -->
+					<button type='button' class='btn-lg btn-dark chiller-button mx-2 py-0' data-bs-target='#mysteryCarousel' data-bs-slide-to="0" aria-current="true" aria-label="Slide 1">Teasers</button>
+					<button type='button' class='btn-lg btn-dark chiller-button mx-2 py-0' data-bs-target='#mysteryCarousel' data-bs-slide-to="1" aria-label="Slide 2">Reveal</button>
+				</p>
+				<div id='mysteryCarousel' class='carousel carousel-inner container-fluid slide px-0' data-bs-ride='carousel' data-bs-wrap="false" data-bs-interval="false">
+					<!-- Secret Film carousel, hidden -->
+					<div class='carousel-item accordion container-fluid px-0 active' id='accordionMyst'></div>
+					<!-- Secret Film carousel, revealed-->
+					<div class='carousel-item accordion container-fluid px-0' id='accordionRev'></div>
+				</div>
+			</section>
+		</main>
+
+		<footer class="py-4 text-center"><h1>Good Luck...</h1></footer>
+	</body>
+</html>
